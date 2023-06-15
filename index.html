@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carrossel de Fotos</title>
+    <style>
+        .carousel {
+            width: 500px;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .carousel ul {
+            list-style: none;
+            width: 200px;
+            padding: 1000;
+            margin: 0;
+            position: absolute;
+            left: 0;
+            transition: left 1s;
+        }
+        
+        .carousel ul li {
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel">
+        <ul>
+            <li><img src="imagem1.jpg" alt="Imagem 1"></li>
+            <li><img src="imagem2.jpg" alt="Imagem 2"></li>
+            <li><img src="imagem3.jpg" alt="Imagem 3"></li>
+        </ul>
+    </div>
+
+    <script>
+        var carousel = document.querySelector('.carousel');
+        var slideList = carousel.querySelector('ul');
+        var slides = slideList.querySelectorAll('li');
+        var currentIndex = 0;
+        var slideWidth = carousel.offsetWidth;
+
+        function goToSlide(index) {
+            slideList.style.left = -index * slideWidth + 'px';
+            currentIndex = index;
+        }
+
+        function slideNext() {
+            if (currentIndex < slides.length - 1) {
+                goToSlide(currentIndex + 1);
+            } else {
+                goToSlide(0);
+            }
+        }
+
+        setInterval(slideNext, 3000);
+    </script>
+</body>
+</html>
